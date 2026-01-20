@@ -27,8 +27,8 @@ jobs:
         host: ${{ secrets.EC2_HOST }}
         username: ${{ secrets.EC2_USERNAME }}
         key: ${{ secrets.EC2_SSH_KEY }}
-        source: "build/libs/*.jar"
-        target: "/home/ubuntu/app"
+        source: "build/libs/*.war"
+        target: "/home/ubuntu/threads-supporter-spring-boot"
         strip_components: 2
 
     # 3. EC2에서 실행 스크립트 가동 (SSH 사용)
@@ -39,7 +39,7 @@ jobs:
         username: ${{ secrets.EC2_USERNAME }}
         key: ${{ secrets.EC2_SSH_KEY }}
         script: |
-          cd /home/ubuntu/app
+          cd /home/ubuntu/threads-supporter-spring-boot
           # 기존 실행 중인 프로세스 종료
           fuser -k 8080/tcp || true
           # 새 버전 실행 (메모리 제한 필수!)
