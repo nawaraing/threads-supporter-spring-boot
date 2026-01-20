@@ -15,6 +15,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -157,6 +158,35 @@ public class ThreadsApiService {
             Thread.sleep(millis);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public Map<String, Object> getUserInsights(String accessToken, String threadsUserId, int period) {
+        String url = API_BASE_URL + "/" + threadsUserId + "/threads_insights"
+                + "?metric=views"
+                + "&period=day"
+                + "&since=" + (System.currentTimeMillis() / 1000 - (period * 24 * 60 * 60))
+                + "&until=" + (System.currentTimeMillis() / 1000)
+                + "&access_token=" + accessToken;
+
+        try {
+            Map<String, Object> response = webClient.get()
+                    .uri(url)
+                    .retrieve()
+                    .bodyToMono(Map.class)
+                    .block();
+
+            if (response != null && response.containsKey("data")) {
+                List<Map<String, Object>> dataList = (List<Map<String, Object>>) response.get("data");
+                if (dataList != null && !dataList.isEmpty()) {
+                    return dataList.get(0);
+                }
+            }
+            return null;
+        } catch (Exception e) {
+            log.error("Failed to fetch insights for user: {}", threadsUserId, e);
+            throw new RuntimeException("Failed to fetch insights: " + e.getMessage(), e);
         }
     }
 }

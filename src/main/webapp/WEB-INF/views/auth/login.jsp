@@ -5,93 +5,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>로그인 - Threads Supporter</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .login-card {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            max-width: 400px;
-            width: 100%;
-        }
-        .login-card h1 {
-            font-size: 28px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        .login-card p {
-            color: #666;
-            margin-bottom: 30px;
-        }
-        .btn-threads {
-            background: #000;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            font-size: 16px;
-            border-radius: 30px;
-            width: 100%;
-            transition: transform 0.2s;
-        }
-        .btn-threads:hover {
-            background: #333;
-            color: white;
-            transform: scale(1.02);
-        }
-        .features {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-        }
-        .feature-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-            font-size: 14px;
-            color: #555;
-        }
-        .feature-item span {
-            margin-right: 10px;
-        }
-    </style>
+    <title>로그인 - 스레드 서포터</title>
+    <link href="/css/styles.css" rel="stylesheet">
 </head>
 <body>
-    <div class="login-card">
-        <div class="text-center">
-            <h1>Threads Supporter</h1>
-            <p>Threads 자동 포스팅 서비스</p>
+    <div class="login-page">
+        <!-- 상단 텍스트 영역 -->
+        <div class="login-header">
+            <h2>브랜딩은 시간이 많이 든다?</h2>
+            <h1>스레드 서포터</h1>
+            <p>마케팅 시간을 단축시켜줄 최고의 도구</p>
+        </div>
 
-            <c:if test="${not empty error}">
-                <div class="alert alert-danger">${error}</div>
-            </c:if>
-
-            <a href="/auth/threads" class="btn btn-threads">
-                Threads로 로그인
-            </a>
-
-            <div class="features">
-                <div class="feature-item">
-                    <span>📅</span> 원하는 시간에 자동 포스팅
+        <!-- 이미지 캐러셀 영역 -->
+        <div class="login-carousel">
+            <div class="login-carousel-item">
+                <div class="login-carousel-card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
                 </div>
-                <div class="feature-item">
-                    <span>🔄</span> 반복 스케줄 설정
+            </div>
+            <div class="login-carousel-item">
+                <div class="login-carousel-card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
                 </div>
-                <div class="feature-item">
-                    <span>📊</span> 포스팅 현황 확인
+            </div>
+            <div class="login-carousel-item">
+                <div class="login-carousel-card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
                 </div>
             </div>
         </div>
-    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- 로그인 버튼 -->
+        <div class="login-footer">
+            <c:if test="${not empty error}">
+                <div class="error-box mb-4">
+                    <div class="error-box-content">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <p>${error}</p>
+                    </div>
+                </div>
+            </c:if>
+            <a href="/auth/threads" class="login-btn" style="display: block; text-decoration: none; text-align: center;">
+                로그인
+            </a>
+        </div>
+    </div>
 </body>
 </html>
