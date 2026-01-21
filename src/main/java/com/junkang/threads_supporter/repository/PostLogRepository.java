@@ -10,9 +10,10 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Repository
-public interface PostLogRepository extends JpaRepository<PostLog, String> {
+public interface PostLogRepository extends JpaRepository<PostLog, UUID> {
 
     Page<PostLog> findByUserOrderByPostedAtDesc(User user, Pageable pageable);
 

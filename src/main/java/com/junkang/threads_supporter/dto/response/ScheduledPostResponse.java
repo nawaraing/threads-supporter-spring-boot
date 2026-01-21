@@ -27,8 +27,8 @@ public class ScheduledPostResponse {
 
     public static ScheduledPostResponse from(ScheduledPost post) {
         return ScheduledPostResponse.builder()
-                .id(post.getId())
-                .userId(post.getUser().getId())
+                .id(post.getId().toString())
+                .userId(post.getUser().getId().toString())
                 .content(post.getContent())
                 .daysOfWeek(post.getDaysOfWeek())
                 .hour(post.getHour())

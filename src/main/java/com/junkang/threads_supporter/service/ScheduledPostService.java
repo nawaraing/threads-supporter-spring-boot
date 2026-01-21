@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -38,7 +39,8 @@ public class ScheduledPostService {
     }
 
     public ScheduledPost update(String id, User user, ScheduledPostRequest request) {
-        ScheduledPost post = scheduledPostRepository.findById(id)
+        UUID postId = UUID.fromString(id);
+        ScheduledPost post = scheduledPostRepository.findById(postId)
                 .orElseThrow(() -> new IllegalArgumentException("Post not found: " + id));
 
         if (!post.getUser().getId().equals(user.getId())) {
@@ -62,7 +64,8 @@ public class ScheduledPostService {
     }
 
     public void delete(String id, User user) {
-        ScheduledPost post = scheduledPostRepository.findById(id)
+        UUID postId = UUID.fromString(id);
+        ScheduledPost post = scheduledPostRepository.findById(postId)
                 .orElseThrow(() -> new IllegalArgumentException("Post not found: " + id));
 
         if (!post.getUser().getId().equals(user.getId())) {
@@ -82,7 +85,8 @@ public class ScheduledPostService {
 
     @Transactional(readOnly = true)
     public List<ScheduledPostResponse> findAllByUserId(String userId) {
-        return scheduledPostRepository.findByUserId(userId)
+        UUID userUuid = UUID.fromString(userId);
+        return scheduledPostRepository.findByUserId(userUuid)
                 .stream()
                 .map(ScheduledPostResponse::from)
                 .collect(Collectors.toList());
@@ -90,7 +94,8 @@ public class ScheduledPostService {
 
     @Transactional(readOnly = true)
     public ScheduledPost findById(String id) {
-        return scheduledPostRepository.findById(id)
+        UUID postId = UUID.fromString(id);
+        return scheduledPostRepository.findById(postId)
                 .orElseThrow(() -> new IllegalArgumentException("Post not found: " + id));
     }
 

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -18,9 +19,13 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public User findById(String id) {
+    public User findById(UUID id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("User not found: " + id));
+    }
+
+    public User findById(String id) {
+        return findById(UUID.fromString(id));
     }
 
     public Optional<User> findByThreadsUserId(String threadsUserId) {

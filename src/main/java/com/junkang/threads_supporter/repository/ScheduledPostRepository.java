@@ -9,15 +9,16 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Repository
-public interface ScheduledPostRepository extends JpaRepository<ScheduledPost, String> {
+public interface ScheduledPostRepository extends JpaRepository<ScheduledPost, UUID> {
 
     List<ScheduledPost> findByUserAndIsActiveTrue(User user);
 
     List<ScheduledPost> findByUserOrderByCreatedAtDesc(User user);
 
-    List<ScheduledPost> findByUserId(String userId);
+    List<ScheduledPost> findByUserId(UUID userId);
 
     // Find recurring posts due for publishing
     @Query(value = """

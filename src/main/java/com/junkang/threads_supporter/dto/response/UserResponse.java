@@ -23,7 +23,7 @@ public class UserResponse {
 
     public static UserResponse from(User user) {
         return UserResponse.builder()
-                .id(user.getId())
+                .id(user.getId().toString())
                 .threadsUserId(user.getThreadsUserId())
                 .username(user.getUsername())
                 .name(user.getName())

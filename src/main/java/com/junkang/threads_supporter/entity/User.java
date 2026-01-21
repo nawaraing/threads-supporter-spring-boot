@@ -3,6 +3,7 @@ package com.junkang.threads_supporter.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Table(name = "users")
@@ -15,7 +16,8 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    @Column(columnDefinition = "uuid")
+    private UUID id;
 
     @Column(name = "threads_user_id", unique = true, nullable = false)
     private String threadsUserId;

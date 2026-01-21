@@ -70,8 +70,8 @@ public class AuthController {
                     profile.getBiography()
             );
 
-            // Set session
-            session.setAttribute("userId", user.getId());
+            // Set session (store UUID as String for consistency)
+            session.setAttribute("userId", user.getId().toString());
             session.setAttribute("username", user.getUsername());
 
             // Set Spring Security context
