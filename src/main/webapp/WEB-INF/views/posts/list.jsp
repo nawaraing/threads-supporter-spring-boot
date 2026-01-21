@@ -5,12 +5,12 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>예약 발행 - 스레드 서포터</title>
     <link href="/css/styles.css" rel="stylesheet">
 </head>
 <body>
-    <div style="min-height: 100vh; background: white;">
+    <div class="app-container">
         <!-- 삭제 로딩 화면 -->
         <div id="deleteLoading" class="loading-overlay hidden">
             <div class="loading-box">

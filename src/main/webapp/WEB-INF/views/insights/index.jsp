@@ -5,11 +5,12 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>통계 - 스레드 서포터</title>
     <link href="/css/styles.css" rel="stylesheet">
 </head>
 <body>
+    <div class="app-container">
     <div class="insights-page">
         <!-- 헤더 -->
         <div class="insights-header">
@@ -123,6 +124,7 @@
                 </ul>
             </div>
         </nav>
+    </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
