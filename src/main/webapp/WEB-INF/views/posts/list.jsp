@@ -111,7 +111,9 @@
                                 <div class="post-meta">
                                     <span class="post-username">${user.username}</span>
                                     <span class="post-date">
-                                        <fmt:formatDate value="${post.createdAt}" pattern="yyyy. M. d."/>
+                                        <c:if test="${post.createdAt != null}">
+                                            ${post.createdAt.year}. ${post.createdAt.monthValue}. ${post.createdAt.dayOfMonth}.
+                                        </c:if>
                                     </span>
                                 </div>
                                 <p class="post-text">${post.content}</p>

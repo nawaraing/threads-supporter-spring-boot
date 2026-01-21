@@ -134,7 +134,7 @@
                                         </td>
                                         <td>
                                             <c:if test="${post.lastPostedAt != null}">
-                                                <fmt:formatDate value="${post.lastPostedAt}" pattern="MM/dd HH:mm"/>
+                                                ${post.lastPostedAt.monthValue}/${post.lastPostedAt.dayOfMonth} ${post.lastPostedAt.hour}:${String.format('%02d', post.lastPostedAt.minute)}
                                             </c:if>
                                             <c:if test="${post.lastPostedAt == null}">-</c:if>
                                         </td>
@@ -181,7 +181,9 @@
                                     </c:if>
                                 </span>
                                 <small class="text-muted">
-                                    <fmt:formatDate value="${log.postedAt}" pattern="MM/dd HH:mm"/>
+                                    <c:if test="${log.postedAt != null}">
+                                        ${log.postedAt.monthValue}/${log.postedAt.dayOfMonth} ${log.postedAt.hour}:${String.format('%02d', log.postedAt.minute)}
+                                    </c:if>
                                 </small>
                             </li>
                         </c:forEach>
