@@ -60,7 +60,7 @@
                 </div>
             </c:if>
             <c:forEach var="post" items="${posts}">
-                <article class="post-item" data-post-id="${post.id}" data-hour="${post.hour}" data-minute="${post.minute}" data-updated="${post.updatedAt.time}">
+                <article class="post-item" data-post-id="${post.id}" data-hour="${post.hour}" data-minute="${post.minute}" data-updated="${post.updatedAt.toLocalDate().toEpochDay()}">
                     <!-- 예약 시간 -->
                     <div class="post-schedule-info">
                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
