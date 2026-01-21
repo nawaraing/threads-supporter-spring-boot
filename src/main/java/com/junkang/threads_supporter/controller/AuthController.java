@@ -33,8 +33,8 @@ public class AuthController {
 
         // Already logged in
         if (userId != null) {
-            log.debug("User already logged in, redirecting to dashboard");
-            return "redirect:/dashboard";
+            log.debug("User already logged in, redirecting to posts");
+            return "redirect:/posts";
         }
         return "auth/login";
     }
@@ -87,7 +87,7 @@ public class AuthController {
             SecurityContextHolder.getContext().setAuthentication(auth);
 
             log.info("User {} logged in successfully", user.getUsername());
-            return "redirect:/dashboard";
+            return "redirect:/posts";
 
         } catch (Exception e) {
             log.error("OAuth callback error", e);
