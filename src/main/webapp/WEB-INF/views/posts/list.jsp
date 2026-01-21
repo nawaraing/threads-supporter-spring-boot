@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt"%>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -60,7 +61,7 @@
                 </div>
             </c:if>
             <c:forEach var="post" items="${posts}">
-                <article class="post-item" data-post-id="${post.id}" data-hour="${post.hour}" data-minute="${post.minute}" data-updated="${post.updatedAt.toLocalDate().toEpochDay()}" data-days="${post.daysOfWeek}">
+                <article class="post-item" data-post-id="${post.id}" data-hour="${post.hour}" data-minute="${post.minute}" data-updated="${post.updatedAt.toLocalDate().toEpochDay()}" data-days="<c:forEach var="d" items="${post.daysOfWeek}" varStatus="s">${d}<c:if test="${!s.last}">,</c:if></c:forEach>">
                     <!-- 예약 시간 -->
                     <div class="post-schedule-info">
                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
