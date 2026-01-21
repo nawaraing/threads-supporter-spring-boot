@@ -372,10 +372,20 @@ function applyFilter() {
         const minute = parseInt(item.dataset.minute);
         const itemTime = hour * 60 + minute;
 
+        // 요일 파싱 (예: "[0, 1, 2]" 또는 "0,1,2" 형태)
+        const daysStr = item.dataset.days || '';
+        const itemDays = daysStr.replace(/[\[\]\s]/g, '').split(',')
+            .filter(d => d !== '')
+            .map(d => parseInt(d));
+
         // 시간 필터링
         const timeMatch = itemTime >= startTime && itemTime <= endTime;
 
-        if (timeMatch) {
+        // 요일 필터링 (선택된 요일 중 하나라도 포함되면 표시)
+        const dayMatch = selectedDays.length === 0 ||
+            itemDays.some(day => selectedDays.includes(day));
+
+        if (timeMatch && dayMatch) {
             item.style.display = '';
         } else {
             item.style.display = 'none';

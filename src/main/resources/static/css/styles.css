@@ -148,7 +148,7 @@ body {
     max-width: 430px;
     background: white;
     border-top: 1px solid var(--gray-200);
-    z-index: 50;
+    z-index: 40;
 }
 
 .bottom-nav-inner {
@@ -675,9 +675,10 @@ body {
 
 .post-meta {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     gap: 0.5rem;
     margin-bottom: 0.25rem;
+    flex-wrap: wrap;
 }
 
 .post-username {

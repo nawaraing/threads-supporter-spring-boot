@@ -60,7 +60,7 @@
                 </div>
             </c:if>
             <c:forEach var="post" items="${posts}">
-                <article class="post-item" data-post-id="${post.id}" data-hour="${post.hour}" data-minute="${post.minute}" data-updated="${post.updatedAt.toLocalDate().toEpochDay()}">
+                <article class="post-item" data-post-id="${post.id}" data-hour="${post.hour}" data-minute="${post.minute}" data-updated="${post.updatedAt.toLocalDate().toEpochDay()}" data-days="${post.daysOfWeek}">
                     <!-- 예약 시간 -->
                     <div class="post-schedule-info">
                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -86,13 +86,13 @@
                         <!-- 토글 버튼 -->
                         <div class="post-toggle">
                             <button type="button" class="toggle-switch ${post.isActive ? 'active' : ''}"
-                                    onclick="toggleActive(${post.id}, ${post.isActive})"
+                                    onclick="toggleActive('${post.id}', ${post.isActive})"
                                     data-post-id="${post.id}">
                                 <span class="toggle-switch-knob"></span>
                             </button>
                         </div>
 
-                        <div class="post-body" onclick="openEditModal(${post.id})">
+                        <div class="post-body" onclick="openEditModal('${post.id}')">
                             <!-- 프로필 이미지 -->
                             <c:choose>
                                 <c:when test="${not empty user.profilePictureUrl}">
