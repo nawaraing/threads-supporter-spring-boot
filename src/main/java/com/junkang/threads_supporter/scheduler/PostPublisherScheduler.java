@@ -26,8 +26,8 @@ public class PostPublisherScheduler {
     private final ThreadsApiService threadsApiService;
     private final PostLogService postLogService;
 
-    // Run every 5 minutes
-    @Scheduled(fixedRate = 300000)  // 5 * 60 * 1000 ms
+    // Run at 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 minutes of every hour
+    @Scheduled(cron = "0 0/5 * * * *", zone = "Asia/Seoul")
     public void publishScheduledPosts() {
         log.info("Running scheduled post publisher...");
 
