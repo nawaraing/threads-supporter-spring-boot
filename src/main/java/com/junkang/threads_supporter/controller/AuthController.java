@@ -28,8 +28,12 @@ public class AuthController {
 
     @GetMapping("/login")
     public String loginPage(HttpSession session) {
+        String userId = (String) session.getAttribute("userId");
+        log.debug("Login page accessed. Session ID: {}, userId: {}", session.getId(), userId);
+
         // Already logged in
-        if (session.getAttribute("userId") != null) {
+        if (userId != null) {
+            log.debug("User already logged in, redirecting to dashboard");
             return "redirect:/dashboard";
         }
         return "auth/login";

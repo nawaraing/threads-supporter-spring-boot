@@ -15,12 +15,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authz -> authz
-                        // Public endpoints
-                        .requestMatchers("/", "/auth/**", "/error/**").permitAll()
-                        .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
-                        // Secured endpoints
-                        .requestMatchers("/dashboard/**", "/posts/**", "/insights/**", "/profile/**").authenticated()
-                        .requestMatchers("/api/**").authenticated()
+                        // All endpoints are handled by session check in controllers
                         .anyRequest().permitAll()
                 )
                 .formLogin(form -> form.disable())
