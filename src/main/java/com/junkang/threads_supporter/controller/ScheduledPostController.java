@@ -26,6 +26,7 @@ public class ScheduledPostController {
         }
 
         User user = userService.findById(userId);
+        model.addAttribute("user", user);
         model.addAttribute("posts", postService.findAllByUser(user));
         return "posts/list";
     }
