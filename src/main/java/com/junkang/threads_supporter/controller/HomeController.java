@@ -10,7 +10,7 @@ public class HomeController {
     @GetMapping("/")
     public String home(HttpSession session) {
         if (session.getAttribute("userId") != null) {
-            return "redirect:/posts/list";
+            return "redirect:/posts";
         }
         return "auth/login";
     }
