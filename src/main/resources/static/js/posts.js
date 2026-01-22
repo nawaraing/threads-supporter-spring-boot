@@ -53,7 +53,8 @@ async function openEditModal(postId) {
         if (data) {
             // 폼에 데이터 설정
             document.getElementById('hour').value = data.hour;
-            document.getElementById('minute').value = data.minute;
+            // minute을 2자리 문자열로 변환 (5 -> "05")
+            document.getElementById('minute').value = String(data.minute).padStart(2, '0');
             document.getElementById('content').value = data.content || '';
             document.getElementById('isRecurring').checked = data.isRecurring !== false;
 
