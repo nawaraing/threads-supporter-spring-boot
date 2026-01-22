@@ -132,47 +132,62 @@ src/main/webapp/WEB-INF/views/
 └── profile/index.jsp     # 프로필 페이지
 ```
 
-## 데이터베이스 스키마
+## 데이터베이스
+
+### ERD
+
+<img width="1088" height="547" alt="Image" src="https://github.com/user-attachments/assets/4204a808-c913-4661-a2f0-e35e8f76a24e" />
+
+### 스키마
 
 ```sql
--- 사용자 테이블
 CREATE TABLE users (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    threads_user_id VARCHAR(255) UNIQUE NOT NULL,
-    username VARCHAR(255),
-    access_token TEXT,
-    token_expires_at TIMESTAMP,
-    profile_picture_url TEXT,
-    follower_count INTEGER,
-    created_at TIMESTAMP DEFAULT NOW(),
-    updated_at TIMESTAMP DEFAULT NOW()
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  threads_user_id TEXT UNIQUE NOT NULL,  -- Meta Threads 유저 ID
+  username TEXT NOT NULL,
+  access_token TEXT NOT NULL,
+  refresh_token TEXT,
+  token_expires_at TIMESTAMPTZ,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW(),
+  follower_picture_url TEXT,
+  follower_count INTEGER,
+  name TEXT
 );
 
--- 예약 포스트 테이블
 CREATE TABLE scheduled_posts (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    user_id UUID REFERENCES users(id),
-    days_of_week INTEGER[],  -- 0=일, 1=월, ..., 6=토
-    hour INTEGER NOT NULL,
-    minute INTEGER NOT NULL,
-    content VARCHAR(500) NOT NULL,
-    image_urls TEXT[],
-    is_active BOOLEAN DEFAULT TRUE,
-    is_recurring BOOLEAN DEFAULT TRUE,
-    last_posted_at TIMESTAMP,
-    created_at TIMESTAMP DEFAULT NOW(),
-    updated_at TIMESTAMP DEFAULT NOW()
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID REFERENCES users(id) ON DELETE CASCADE,
+  
+  -- 발행 스케줄
+  days_of_week INTEGER[] NOT NULL,  -- [0,1,2,3,4,5,6] (일~토)
+  hour INTEGER NOT NULL CHECK (hour >= 0 AND hour <= 23),
+  minute INTEGER NOT NULL CHECK (minute >= 0 AND minute <= 59),
+  
+  -- 글 내용
+  content TEXT NOT NULL,
+  image_urls TEXT[],  -- 이미지 URL 배열
+  
+  -- 상태 관리
+  is_active BOOLEAN DEFAULT true,
+  last_posted_at TIMESTAMPTZ,
+  
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW(),
+
+  is_recurring BOOLEAN
 );
 
--- 발행 로그 테이블
 CREATE TABLE post_logs (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    scheduled_post_id UUID REFERENCES scheduled_posts(id),
-    user_id UUID REFERENCES users(id),
-    threads_post_id VARCHAR(255),
-    status VARCHAR(20),  -- 'success' | 'failed'
-    error_message TEXT,
-    posted_at TIMESTAMP DEFAULT NOW()
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  scheduled_post_id UUID REFERENCES scheduled_posts(id) ON DELETE CASCADE,
+  user_id UUID REFERENCES users(id) ON DELETE CASCADE,
+  
+  threads_post_id TEXT,  -- Threads API에서 받은 post ID
+  status TEXT NOT NULL,  -- 'success', 'failed'
+  error_message TEXT,
+  
+  posted_at TIMESTAMPTZ DEFAULT NOW()
 );
 ```
 
