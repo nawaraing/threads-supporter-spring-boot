@@ -69,8 +69,20 @@
                         </svg>
                         <span class="schedule-text">
                             <c:set var="days" value="${['일', '월', '화', '수', '목', '금', '토']}"/>
+                            <%-- 요일 배열을 Set으로 변환하여 체크 --%>
+                            <c:set var="daySet" value="${post.daysOfWeek}"/>
+                            <c:set var="hasWeekdays" value="${false}"/>
+                            <c:set var="hasWeekend" value="${false}"/>
+                            <c:set var="weekdayCount" value="${0}"/>
+                            <c:set var="weekendCount" value="${0}"/>
+                            <c:forEach var="d" items="${daySet}">
+                                <c:if test="${d >= 1 && d <= 5}"><c:set var="weekdayCount" value="${weekdayCount + 1}"/></c:if>
+                                <c:if test="${d == 0 || d == 6}"><c:set var="weekendCount" value="${weekendCount + 1}"/></c:if>
+                            </c:forEach>
                             <c:choose>
                                 <c:when test="${post.daysOfWeek.length == 7}">매일</c:when>
+                                <c:when test="${weekdayCount == 5 && weekendCount == 0}">평일</c:when>
+                                <c:when test="${weekendCount == 2 && weekdayCount == 0}">주말</c:when>
                                 <c:otherwise>
                                     매주 <c:forEach var="day" items="${post.daysOfWeek}" varStatus="status">${days[day]}<c:if test="${!status.last}">, </c:if></c:forEach>
                                 </c:otherwise>
