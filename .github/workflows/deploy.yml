@@ -43,4 +43,4 @@ jobs:
           # 기존 실행 중인 프로세스 종료
           fuser -k 8080/tcp || true
           # 새 버전 실행 (메모리 제한 필수!)
-          nohup java -Xms512m -Xmx512m -jar build/libs/threads-supporter-0.0.1-SNAPSHOT.war  > app.log 2>&1 &
+          nohup java -Xms512m -Xmx512m -Dspring.profiles.active=prod -jar build/libs/threads-supporter-0.0.1-SNAPSHOT.war > /dev/null 2>&1 &
