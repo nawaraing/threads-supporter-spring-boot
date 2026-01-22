@@ -124,8 +124,8 @@
                                 <div class="post-meta">
                                     <span class="post-username">${user.username}</span>
                                     <span class="post-date">
-                                        <c:if test="${post.createdAt != null}">
-                                            ${post.createdAt.year}. ${post.createdAt.monthValue}. ${post.createdAt.dayOfMonth}.
+                                        <c:if test="${post.updatedAt != null}">
+                                            ${post.updatedAt.year}. ${post.updatedAt.monthValue}. ${post.updatedAt.dayOfMonth}.
                                         </c:if>
                                     </span>
                                 </div>
