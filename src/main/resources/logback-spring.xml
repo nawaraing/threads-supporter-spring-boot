@@ -10,7 +10,6 @@
     <!-- 로컬 개발 환경용 파일 로그 -->
     <springProfile name="default,local,dev">
         <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-            <file>./logs/threads-supporter.log</file>
             <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
                 <fileNamePattern>./logs/threads-supporter.%d{yyyyMMdd}.log</fileNamePattern>
                 <maxHistory>7</maxHistory>
@@ -29,7 +28,6 @@
     <!-- 운영 환경용 파일 로그 -->
     <springProfile name="prod,production">
         <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-            <file>/var/log/threads-supporter/threads-supporter.log</file>
             <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
                 <fileNamePattern>/var/log/threads-supporter/threads-supporter.%d{yyyyMMdd}.log</fileNamePattern>
                 <maxHistory>7</maxHistory>
