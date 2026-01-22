@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -28,6 +29,7 @@ public class PostPublisherScheduler {
 
     // Run at 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 minutes of every hour
     @Scheduled(cron = "0 0/5 * * * *", zone = "Asia/Seoul")
+    @Transactional
     public void publishScheduledPosts() {
         log.info("Running scheduled post publisher...");
 
