@@ -21,13 +21,19 @@
             <!-- 이미지 캐러셀 영역 -->
             <div class="login-carousel">
                 <div class="login-carousel-item">
-                    <div class="login-carousel-card"></div>
+                    <div class="login-carousel-card">
+                        <img src="/images/login-carousel-1.jpg" alt="스크린샷 1">
+                    </div>
                 </div>
                 <div class="login-carousel-item">
-                    <div class="login-carousel-card"></div>
+                    <div class="login-carousel-card">
+                        <img src="/images/login-carousel-2.jpg" alt="스크린샷 2">
+                    </div>
                 </div>
                 <div class="login-carousel-item">
-                    <div class="login-carousel-card"></div>
+                    <div class="login-carousel-card">
+                        <img src="/images/login-carousel-3.jpg" alt="스크린샷 3">
+                    </div>
                 </div>
             </div>
 
