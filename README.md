@@ -10,7 +10,7 @@ Meta의 Threads API를 활용하여 플랫폼에 예약 포스팅을 자동화�
 - **통계 대시보드**: Threads Insights API를 통한 조회수 분석
 - **모바일 최적화**: 반응형 UI로 모바일 환경에서도 편리하게 사용
 
-## 서비스 URL
+## 라이브 서비스 URL
 
 [https://threads-supporter.duckdns.org](https://threads-supporter.duckdns.org/posts)
 
