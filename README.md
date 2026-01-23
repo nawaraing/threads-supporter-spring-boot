@@ -163,7 +163,7 @@ src/main/webapp/WEB-INF/views/
 
 ### ERD
 
-<img width="1088" height="547" alt="Image" src="https://github.com/user-attachments/assets/4204a808-c913-4661-a2f0-e35e8f76a24e" />
+<img width="694" height="540" alt="Image" src="https://github.com/user-attachments/assets/abf5556e-8120-4db3-8ab0-10e2f53f96db" />
 
 ### 스키마
 
