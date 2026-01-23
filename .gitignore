@@ -42,3 +42,4 @@ out/
 .env.*.local
 deploy.sh
 *.pem
+logs/*
