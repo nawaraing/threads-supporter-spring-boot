@@ -1,24 +1,6 @@
 # Threads Supporter
 
-Threads API를 활용한 소셜 미디어 자동 포스팅 서비스입니다.
-
-## 스크린샷
-
-### 로그인 페이지
-모바일 앱 스타일의 깔끔한 로그인 화면
-
-### 예약 포스트 목록
-- 요일/시간별 필터링
-- 최근 수정순/시간순 정렬
-- 토글 스위치로 활성화/비활성화
-
-### 통계 대시보드
-- 기간별 총 조회수
-- 일별 조회수 추이 차트
-
-## 프로젝트 소개
-
-**Threads Supporter**는 Meta의 Threads 플랫폼에 예약 포스팅을 자동화하는 웹 애플리케이션입니다. 사용자가 설정한 요일과 시간에 맞춰 자동으로 글을 발행하여 브랜딩 및 마케팅 업무의 효율성을 높여줍니다.
+Meta의 Threads API를 활용하여 플랫폼에 예약 포스팅을 자동화하는 웹 애플리케이션입니다. 사용자가 설정한 요일과 시간에 맞춰 자동으로 글을 발행하여 브랜딩 및 마케팅 업무의 효율성을 높여줍니다.
 
 ### 주요 기능
 
@@ -27,6 +9,45 @@ Threads API를 활용한 소셜 미디어 자동 포스팅 서비스입니다.
 - **반복 발행**: 특정 요일/시간 반복 또는 일회성 발행 선택
 - **통계 대시보드**: Threads Insights API를 통한 조회수 분석
 - **모바일 최적화**: 반응형 UI로 모바일 환경에서도 편리하게 사용
+
+## 서비스 URL
+
+[https://threads-supporter.duckdns.org](https://threads-supporter.duckdns.org/posts)
+
+- **ID**: threads_supporter_test
+- **PW**: tmfpemtjvhxj
+(한글로 스레드서포터)
+
+## 스크린샷
+
+### 로그인 페이지
+- 모바일 앱 스타일의 깔끔한 로그인 화면
+- Meta API를 활용한 간편한 로그인
+
+<img height="600" alt="Image" src="https://github.com/user-attachments/assets/9c5c99c3-2859-4b32-8644-9a711433cace" />
+<img height="600" alt="Image" src="https://github.com/user-attachments/assets/c26f6a7c-5a05-4479-9b9f-5d8aa2d20704" />
+<img height="600" alt="Image" src="https://github.com/user-attachments/assets/2c065a58-2bc9-47b8-9b16-69b4442dff2b" />
+
+### 예약 포스트 목록
+- 최근 수정순/시간순 정렬
+- 토글 스위치로 활성화/비활성화
+- 요일/시간별 필터링
+
+<img height="600" alt="Image" src="https://github.com/user-attachments/assets/496f2423-5b63-4092-ada2-ff6b8d90be92" />
+<img height="600" alt="Image" src="https://github.com/user-attachments/assets/caf707bb-2980-461f-9ee3-6c8a225f0954" />
+<img height="600" alt="Image" src="https://github.com/user-attachments/assets/1c77dcae-608d-41c2-a5a6-a8a808c155b1" />
+
+### 통계 대시보드
+- 기간별 총 조회수
+- 일별 조회수 추이 차트
+
+<img height="600" alt="Image" src="https://github.com/user-attachments/assets/1ce7a182-7636-41d0-bb27-5d7acff41f2a" />
+
+### 프로필 페이지
+- 이메일 연동 CS 수집
+- 로그아웃 기능
+
+<img height="600" alt="Image" src="https://github.com/user-attachments/assets/e1ad7aa7-f41e-418a-a4be-da8ce9772e9f" />
 
 ## 기술 스택
 
