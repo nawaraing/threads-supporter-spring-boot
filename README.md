@@ -26,7 +26,6 @@ Meta의 Threads API를 활용하여 플랫폼에 예약 포스팅을 자동화�
 
 <img height="600" alt="Image" src="https://github.com/user-attachments/assets/9c5c99c3-2859-4b32-8644-9a711433cace" />
 <img height="600" alt="Image" src="https://github.com/user-attachments/assets/c26f6a7c-5a05-4479-9b9f-5d8aa2d20704" />
-<img height="600" alt="Image" src="https://github.com/user-attachments/assets/2c065a58-2bc9-47b8-9b16-69b4442dff2b" />
 
 ### 예약 포스트 목록
 - 최근 수정순/시간순 정렬
