@@ -36,7 +36,7 @@ public class SecurityConfig {
                         })
                 )
                 .csrf(csrf -> csrf
-                        .ignoringRequestMatchers("/api/**")
+                        .ignoringRequestMatchers("/api/**", "/auth/logout")
                 )
                 .sessionManagement(session -> session
                         .maximumSessions(1)
