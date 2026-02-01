@@ -235,7 +235,7 @@ THREADS_CLIENT_SECRET=your_threads_client_secret
 | GET | `/auth/login` | 로그인 페이지 |
 | GET | `/auth/threads` | Threads OAuth 시작 |
 | GET | `/auth/callback` | OAuth 콜백 처리 |
-| GET | `/auth/logout` | 로그아웃 |
+| POST | `/auth/logout` | 로그아웃 |
 
 ### 예약 포스트
 | Method | Endpoint | Description |
@@ -245,7 +245,7 @@ THREADS_CLIENT_SECRET=your_threads_client_secret
 | POST | `/api/posts` | 포스트 생성 |
 | PUT | `/api/posts/{id}` | 포스트 수정 |
 | DELETE | `/api/posts/{id}` | 포스트 삭제 |
-| POST | `/api/posts/{id}/toggle` | 활성화 토글 |
+| PATCH | `/api/posts/{id}/active` | 활성화 상태 변경 |
 
 ### 통계
 | Method | Endpoint | Description |

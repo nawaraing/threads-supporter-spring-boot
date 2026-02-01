@@ -67,8 +67,8 @@ public class ScheduledPostApiController {
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping("/{id}/toggle")
-    public ResponseEntity<Void> toggleActive(@PathVariable String id, HttpSession session) {
+    @PatchMapping("/{id}/active")
+    public ResponseEntity<Void> updateActive(@PathVariable String id, HttpSession session) {
         User user = getCurrentUser(session);
         postService.toggleActive(id, user);
         return ResponseEntity.ok().build();

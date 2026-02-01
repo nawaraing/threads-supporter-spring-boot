@@ -101,9 +101,11 @@
                             <button type="button" class="btn btn-secondary" onclick="hideLogoutModal()">
                                 취소
                             </button>
-                            <a href="/auth/logout" class="btn btn-danger" style="text-decoration: none;">
-                                로그아웃
-                            </a>
+                            <form action="/auth/logout" method="post" style="display: inline;">
+                                <button type="submit" class="btn btn-danger">
+                                    로그아웃
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>

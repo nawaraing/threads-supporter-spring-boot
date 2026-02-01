@@ -30,7 +30,9 @@
                     </span>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/auth/logout">로그아웃</a>
+                    <form action="/auth/logout" method="post" style="display: inline;">
+                        <button type="submit" class="nav-link btn btn-link" style="border: none; background: none; cursor: pointer;">로그아웃</button>
+                    </form>
                 </li>
             </ul>
         </div>
