@@ -19,7 +19,6 @@ public class WebClientConfig {
                         .defaultCodecs()
                         .maxInMemorySize(10 * 1024 * 1024))
                 .filter(loggingConfig.logRequest())
-                .filter(loggingConfig.logResponse())
                 .build();
     }
 }

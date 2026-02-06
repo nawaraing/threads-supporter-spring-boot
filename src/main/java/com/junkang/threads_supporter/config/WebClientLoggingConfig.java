@@ -3,7 +3,10 @@ package com.junkang.threads_supporter.config;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.reactive.function.client.ClientRequest;
+import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
+import org.springframework.web.reactive.function.client.ExchangeFunction;
 import reactor.core.publisher.Mono;
 
 /**
@@ -14,50 +17,37 @@ import reactor.core.publisher.Mono;
 @Configuration
 public class WebClientLoggingConfig {
 
+    private static final String START_TIME_ATTR = "startTime";
+
     @Bean
     ExchangeFilterFunction logRequest() {
-        return ExchangeFilterFunction.ofRequestProcessor(clientRequest -> {
+        return (request, next) -> {
             long startTime = System.currentTimeMillis();
 
-            log.info("🌐 [API REQUEST] {} {}",
-                clientRequest.method(),
-                clientRequest.url());
+            log.info("🌐 [API REQUEST] {} {}", request.method(), request.url());
 
-            return Mono.just(clientRequest)
-                    .doOnNext(request -> request.attributes()
-                            .put("startTime", startTime));
-        });
-    }
+            ClientRequest modifiedRequest = ClientRequest.from(request)
+                    .attribute(START_TIME_ATTR, startTime)
+                    .build();
 
-    @Bean
-    ExchangeFilterFunction logResponse() {
-        return ExchangeFilterFunction.ofResponseProcessor(clientResponse -> {
-            return Mono.just(clientResponse)
+            return next.exchange(modifiedRequest)
                     .doOnNext(response -> {
-                        Long requestStartTime = (Long) response.logPrefix();
-                        long startTime = System.currentTimeMillis();
+                        long endTime = System.currentTimeMillis();
+                        Long requestStartTime = (Long) modifiedRequest.attribute(START_TIME_ATTR).orElse(null);
 
-                        // 요청 시작 시간을 attributes에서 가져옴
-                        Object startTimeAttr = clientResponse.request().attributes().get("startTime");
-                        long duration = 0;
-                        if (startTimeAttr instanceof Long) {
-                            duration = startTime - (Long) startTimeAttr;
-                        }
+                        if (requestStartTime != null) {
+                            long duration = endTime - requestStartTime;
+                            String logLevel = duration > 2000 ? "🔴" : duration > 1000 ? "🟡" : "🟢";
 
-                        String logLevel = duration > 2000 ? "🔴" : duration > 1000 ? "🟡" : "🟢";
+                            log.info("{} [API RESPONSE] Status: {} | Time: {}ms",
+                                    logLevel, response.statusCode(), duration);
 
-                        log.info("{} [API RESPONSE] Status: {} | Time: {}ms",
-                            logLevel,
-                            response.statusCode(),
-                            duration);
-
-                        if (duration > 2000) {
-                            log.warn("⚠️ SLOW API CALL took {}ms", duration);
+                            if (duration > 2000) {
+                                log.warn("⚠️ SLOW API CALL took {}ms", duration);
+                            }
                         }
                     })
-                    .doOnError(error -> {
-                        log.error("❌ [API ERROR] Request failed: {}", error.getMessage());
-                    });
-        });
+                    .doOnError(error -> log.error("❌ [API ERROR] Request failed: {}", error.getMessage()));
+        };
     }
 }
