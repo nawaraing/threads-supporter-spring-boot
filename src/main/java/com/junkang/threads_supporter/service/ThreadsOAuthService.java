@@ -36,7 +36,7 @@ public class ThreadsOAuthService {
     private static final String API_BASE_URL = "https://graph.threads.net/v1.0";
 
     public String buildAuthorizationUrl() {
-        String scopes = "threads_basic,threads_content_publish,threads_manage_insights,threads_manage_replies,threads_read_replies";
+        String scopes = "threads_basic,threads_content_publish,threads_manage_insights,threads_manage_replies,threads_read_replies, threads_profile_discovery";
         return AUTHORIZATION_URI +
                 "?client_id=" + clientId +
                 "&redirect_uri=" + URLEncoder.encode(redirectUri, StandardCharsets.UTF_8) +
